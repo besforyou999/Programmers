@@ -13,7 +13,6 @@ class Solution {
 		int min = 1001;
 		for (int i = 1 ; i <=  len  ; i++) {
 			String compressed_str = compress(i, s);	
-			//System.out.println(compressed_str);
 			int newLen = compressed_str.length();
 			if (min > newLen) min = newLen;
 		}
