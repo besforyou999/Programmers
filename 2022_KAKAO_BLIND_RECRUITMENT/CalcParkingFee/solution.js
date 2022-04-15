@@ -6,30 +6,23 @@ function makeCarFee(carNumber, fee) {
 }
 
 function calcFee(fees, sumTime) {
-    let basicTime = Number(fees[0]);
-    let basicFee  = Number(fees[1]);
-    let unitTime  = Number(fees[2]);
-    let unitFee   = Number(fees[3]);
+    let basicTime = Number(fees[0]), basicFee = Number(fees[1]);
+    let unitTime = Number(fees[2]), unitFee = Number(fees[3]);
     let fee;
     if (sumTime <= basicTime) fee = basicFee;
-    else {
-        fee = basicFee + Math.ceil( (sumTime - basicTime) / unitTime ) * unitFee;
-    }
+    else fee = basicFee + Math.ceil( (sumTime - basicTime) / unitTime ) * unitFee;
     return fee;
 }
 
 function timeToMin(time) {
     const token = time.split(":");
-    const hour  = Number(token[0]);
-    const min   = Number(token[1]);
+    const hour  = Number(token[0]), min = Number(token[1]);
     return 60 * hour + min;
 }
 
 function solution(fees, records) {
-    const answer            = [];
-    const parkingTimeList   = [];
-    const map               = new Map();
-    const parkingTimeMap    = new Map();
+    const answer = [], parkingTimeList = [];
+    const map = new Map(), parkingTimeMap = new Map();
 
     records.forEach(element => {
         let token     = element.split(" ");
@@ -65,13 +58,8 @@ function solution(fees, records) {
         parkingTimeList.push(makeCarFee(carNumber, fee));
     }
 
-    parkingTimeList.sort((a,b) => {
-        return a.carNumber - b.carNumber;
-    });
-
-    parkingTimeList.forEach(item =>{
-        answer.push(item.fee);
-    })
+    parkingTimeList.sort((a,b) => { return a.carNumber - b.carNumber; });
+    parkingTimeList.forEach(item =>{ answer.push(item.fee); })
     
     return answer;
 }
